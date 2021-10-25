@@ -1,5 +1,4 @@
 const express = require('express');
-const MongoClient = require('mongodb').MongoClient;
 const dotenv = require('dotenv');
 dotenv.config();
 const wordRouter = require('./routes/word');
@@ -7,7 +6,7 @@ const wordRouter = require('./routes/word');
 const cors = require('cors');
 
 const url = process.env.DATABASE_ACCESS;
-const client = new MongoClient(url, { useUnifiedTopology: true });
+
 
 
 
