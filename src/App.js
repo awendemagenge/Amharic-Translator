@@ -1,23 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function App() {
+  const [state, setState] = useState("");
+  const [newstate, updateState] = useState("");
+  const wordEventHandler = (e) => {
+    setState(e.target.value);
+    if (e.target.value === "") {
+      updateState("");
+    }
+  };
+
+  useEffect(() => convertToAmharic());
+
+  const convertToAmharic = () => {
+    axios
+      .get("https://amh-translator.herokuapp.com/" + state)
+      .then((doc) => updateState(doc.data));
+  };
+  const clearHandle=()=>{
+    setState("")
+    updateState("")
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <h1 className="colorize2">
+        Amharic English Word Translator
+        <br />
+        አማርኛ መዝገበ -ቃላት
+        <br />
+        <input
+          className="input"
+          type="text"
+          value={state}
+          placeholder="Search"
+          onChange={(e) => wordEventHandler(e)}
+        />
+        <button onClick={clearHandle}>clear</button>
+        <div className="colorize1">
+          {" "}
+          word: {state}
+          <br />
+          ትርጉም: {newstate}
+        </div>
+      </h1>
     </div>
   );
 }
