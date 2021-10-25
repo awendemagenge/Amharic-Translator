@@ -1,7 +1,6 @@
 const express = require("express");
 const translate = require("translate");
 const router = express.Router();
-router.use(express.static(`main`));
 
 // get all farmers
 //localhost:4000/farmers

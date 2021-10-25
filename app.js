@@ -5,9 +5,6 @@ const wordRouter = require('./routes/word');
 
 const cors = require('cors');
 
-const url = process.env.DATABASE_ACCESS;
-
-
 
 
 const app = express();
