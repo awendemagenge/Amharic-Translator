@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 function App() {
@@ -10,19 +10,23 @@ function App() {
       updateState("");
     }
   };
-  const sumbit = () => {
-    if (state.length > 1) {
-      axios.post("https://amh-translator.herokuapp.com", { word: state }).then((doc) => {
-        axios.get("https://amh-translator.herokuapp.com/" + state).then((doc) => {
-          console.log(doc);
-          let data = doc.data;
-          if (typeof data === "string") {
-            updateState(data);
-          }
-          console.log(data);
-        });
-      });
-    }
+
+  useEffect(() => submit());
+  // const sumbit = () => {
+  //   if (state.length > 1) {
+  //     // axios.post("http://localhost:4000", { word: state }).then((doc) => {
+  //     // });
+  //   }
+  // };
+  const submit = () => {
+    axios.get("https://amh-translator.herokuapp.com/" + state).then((doc) => {
+      console.log(doc);
+      let data = doc.data;
+      if (typeof data === "string") {
+        updateState(data);
+      }
+      console.log(data);
+    });
   };
 
   const clearHandle = () => {
@@ -48,7 +52,7 @@ function App() {
           placeholder="Search"
           onChange={(e) => wordEventHandler(e)}
         />
-        <button onClick={sumbit}>search</button>
+        {/* <button onClick={sumbit}>search</button> */}
         <button onClick={clearHandle}>clear</button>
         <div className="colorize1">
           {" "}
