@@ -30,13 +30,8 @@ function App() {
   };
 
   const clearHandle = () => {
-    axios
-      .delete("https://amh-translator.herokuapp.com")
-      .then(() => {
         setState("");
         updateState("");
-      })
-      .catch((err) => console.log(err));
   };
   return (
     <div className="container">
