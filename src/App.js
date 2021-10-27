@@ -47,7 +47,6 @@ function App() {
           placeholder="Search"
           onChange={(e) => wordEventHandler(e)}
         />
-        {/* <button onClick={sumbit}>search</button> */}
         <button onClick={clearHandle}>clear</button>
         <div className="colorize1">
           {" "}
